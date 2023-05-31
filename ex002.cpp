@@ -7,13 +7,14 @@ using namespace std;
 
 int cartas();
 int naipe();
+string nomenaipe(int n1);
 
 int main(){
     
     int j1c, j2c, j3c, j4c, j1n, j2n, j3n, j4n, maiorc, maiorn, d1 = 0, d2 = 0;
     char opc;
     bool dupla1 = false, dupla2 = false;
-    string winner;
+    string winner, ncarta, maiornaipe;
     
     srand(time(0));
 
@@ -25,53 +26,63 @@ int main(){
         
         j1c = cartas();
         j1n = naipe();
-        cout << "O jogador 1 tirou a carta: " << j1c << " de naipe: " << j1n << endl;
+        ncarta = nomenaipe(j1n);
+        cout << "O jogador 1 tirou a carta: " << j1c << " de " << ncarta << endl;
         maiorc = j1c;
         maiorn = j1n;
+        maiornaipe = ncarta;
         winner = "Jogador 1 ganhou / Pontos para dupla: 1";
-        
         
         j2c = cartas();
         j2n = naipe();
-        cout << "O jogador 2 tirou a carta: " << j2c << " de naipe: " << j2n << endl;
+        ncarta = nomenaipe(j2n);
+        cout << "O jogador 2 tirou a carta: " << j2c << " de " << ncarta << endl;
         if(j2c > maiorc){
             maiorc = j2c;
             maiorn = j2n;
+            maiornaipe = ncarta;
             winner = "Jogador 2 ganhou / Pontos para dupla: 1";
         }
         if(j2c == maiorc && j2n > maiorn){
             maiorc = j2c;
             maiorn = j2n;
+            maiornaipe = ncarta;
             winner = "Jogador 2 ganhou / Pontos para dupla: 1";
         }
         
         
         j3c = cartas();
         j3n = naipe();
-        cout << "O jogador 3 tirou a carta: " << j3c << " de naipe: " << j3n << endl;
+        ncarta = nomenaipe(j3n);
+        cout << "O jogador 3 tirou a carta: " << j3c << " de " << ncarta << endl;
         if(j3c > maiorc){
             maiorc = j3c;
             maiorn = j3n;
+            maiornaipe = ncarta;
             winner = "Jogador 3 ganhou / Pontos para dupla: 2";
         }
         if(j3c == maiorc && j3n > maiorn){
             maiorc = j3c;
             maiorn = j3n;
+            maiornaipe = ncarta;
             winner = "Jogador 3 ganhou / Pontos para dupla: 2";
         }
         
         
         j4c = cartas();
         j4n = naipe();
-        cout << "O jogador 4 tirou a carta: " << j4c << " de naipe: " << j4n << endl;
+        ncarta = nomenaipe(j4n);
+        cout << "O jogador 4 tirou a carta: " << j4c << " de " << ncarta << endl;
         if(j4c > maiorc){
             maiorc = j4c;
             maiorn = j4n;
+            maiornaipe = ncarta;
             winner = "Jogador 4 ganhou / Pontos para dupla: 2";
         }
         if(j4c == maiorc && j4n > maiorn){
             maiorc = j4c;
             maiorn = j4n;
+            maiornaipe = ncarta;
             winner = "Jogador 4 ganhou / Pontos para dupla: 2";
         }
         
@@ -93,7 +104,7 @@ int main(){
         }
         
 
-        cout << "\nA maior carta foi: " << maiorc << " / com o naipe: " << maiorn << endl;
+        cout << "\nA maior carta foi: " << maiorc << " de " << maiornaipe << endl;
         cout << "\n"<< winner << endl;
         cout << "\nPontos da dupla 1: " << d1 << endl;
         cout << "\nPontos da dupla 2: " << d2 << endl;
@@ -140,4 +151,21 @@ int cartas(){
 int naipe(){
     int n2 = rand() % 4 + 1;
     return n2;
+}
+
+string nomenaipe(int n1){
+
+    if(n1 == 1){
+    return "Ouros";
+    }
+    if(n1 == 2){
+        return "Espadilha";
+    }
+    if(n1 == 3){
+        return "Copas";
+    }
+    if(n1 == 4){
+        return "Paus";
+    }
+    return "";
 }
